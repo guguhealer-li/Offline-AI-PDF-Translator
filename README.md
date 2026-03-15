@@ -14,3 +14,11 @@
 请确保你的 Python 环境在 3.8 以上，然后安装核心依赖：
 ```bash
 pip install -r requirements.txt
+
+## 📦 桌面端应用打包 (构建独立 .exe)
+
+本项目支持使用 `PyInstaller` 构建脱离 Python 环境的独立运行程序。我们对底层模型路径和资源文件寻址进行了工程化处理，确保打包后的 `.exe` 能够精准定位离线模型。
+
+**打包命令：**
+```bash
+pyinstaller --onedir --clean --name "AITranslator_v0.1" main.py

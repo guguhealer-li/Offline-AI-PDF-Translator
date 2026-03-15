@@ -1,7 +1,9 @@
 import os
+import sys
 from docx import Document
 from pdf_parser import extract_text_from_pdf
-from translator_engine import AITranslator
+from translator_engine import AITranslator, get_base_path
+
 
 
 def create_bilingual_word(input_pdf, output_docx):
@@ -58,7 +60,8 @@ def create_bilingual_word(input_pdf, output_docx):
     print("=" * 40)
 
 if __name__ == '__main__':
-    intput_file = "test_files/sample.pdf"
-    output_file = "output/translated_result.docx"
+    BASE_PATH = get_base_path()
+    input_file = os.path.join(BASE_PATH, "test_files", "sample.pdf")
+    output_file = os.path.join(BASE_PATH, "output", "translated_result.docx")
 
-    create_bilingual_word(intput_file, output_file)
+    create_bilingual_word(input_file, output_file)

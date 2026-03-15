@@ -1,9 +1,20 @@
 import os
+import sys
 import subprocess
 import ctranslate2
 import transformers
 
-MODEL_DIR = "models/opus-mt-en-zh"
+def get_base_path():
+    """获取程序运行时的绝对路径（兼容 Python 脚本和打包后的 .exe）"""
+    if getattr(sys, 'frozen', False):
+        # 如果是被 PyInstaller 打包后的环境，返回 .exe 所在的目录
+        return os.path.dirname(sys.executable)
+    else:
+        # 如果是普通的 Python 脚本环境，返回当前脚本所在的目录
+        return os.path.dirname(os.path.abspath(__file__))
+
+BASE_PATH = get_base_path()
+MODEL_DIR = os.path.join(BASE_PATH, "models", "opus-mt-en-zh")
 
 
 class AITranslator:
