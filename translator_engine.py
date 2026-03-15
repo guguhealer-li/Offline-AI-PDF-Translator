@@ -49,8 +49,13 @@ class AITranslator:
 
     def translate(self, text):
         """核心翻译方法"""
-        if not text.strip():
+        if isinstance(text, list):
+            text = " ".join([str(item) for item in text])
+
+        if not text:
             return ""
+
+        text = str(text)
 
         try:
             source = self.tokenizer.convert_ids_to_tokens(self.tokenizer.encode(text))
